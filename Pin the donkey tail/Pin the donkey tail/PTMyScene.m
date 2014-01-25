@@ -23,7 +23,11 @@
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
         
-        [self addChild: [self Donkey]];
+        SKSpriteNode * donk = [self Donkey];
+        SKSpriteNode * hill = [self Hill];
+        [self addChild: donk];
+        [self addChild: hill];
+        donk.scene.physicsWorld.gravity=CGVectorMake(0.0, -1.0);
         
         [self addChild:myLabel];
     }
@@ -32,19 +36,22 @@
 
 - (SKSpriteNode * ) Donkey{
     SKSpriteNode *donkey = [[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]; //size:CGSizeMake(64,32)];
-    
+
+    donkey.physicsBody= [SKPhysicsBody bodyWithRectangleOfSize:donkey.size];
+    donkey.physicsBody.affectedByGravity = TRUE;
+    donkey.physicsBody.restitution = 0.8;
     
     
     SKAction *hover = [SKAction sequence:@[
+                                           [SKAction moveByX:0 y:250.0 duration:0.0],
+                                           [SKAction waitForDuration:0.2],
                                            
-                                           [SKAction waitForDuration:0.3],
-                                           
-                                           [SKAction moveByX:100 y:50.0 duration:0.8],
+                                           [SKAction moveByX:100 y:200.0 duration:0.8],
                                            [SKAction rotateByAngle:0.1 duration:0.3],
                                            
-                                           [SKAction waitForDuration:0.3],
+                                           [SKAction waitForDuration:0.2],
                                            
-                                           [SKAction moveByX:100 y:50.0 duration:0.8],
+                                           [SKAction moveByX:100 y:200.0 duration:0.8],
                                            [SKAction rotateByAngle:-0.1 duration:0.4]]];
     
     [donkey runAction: [SKAction repeatActionForever:hover]];
@@ -54,6 +61,26 @@
     return donkey;
 
 }
+
+- (SKSpriteNode * ) Hill{
+    SKSpriteNode *hill = [[SKSpriteNode alloc] initWithImageNamed:@"Hill.jpg"]; //size:CGSizeMake(64,32)];
+    
+    hill.donkey.physicsBody= [SKPhysicsBody bodyWithCircleOfRadius:(100)];
+    hill.physicsBody.affectedByGravity = FALSE;
+    hill.physicsBody.restitution = 0.0;
+    
+    
+
+    
+    
+    //SKLabelNode * donkey = [UIImage imageNamed:@"Donkey.jpg"];
+    return hill;
+    
+}
+
+
+
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
