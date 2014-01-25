@@ -11,6 +11,9 @@
 		9210063A1893D9F3002539BD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921006391893D9F3002539BD /* OpenGLES.framework */; };
 		9210063C1893DA04002539BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9210063B1893DA04002539BD /* QuartzCore.framework */; };
 		9210063E1893DDDA002539BD /* Donkey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9210063D1893DDDA002539BD /* Donkey.jpg */; };
+		92103E6E18942717002539BD /* PT.m in Sources */ = {isa = PBXBuildFile; fileRef = 92103E6D18942717002539BD /* PT.m */; };
+		92103E71189431F1002539BD /* PTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 92103E70189431F1002539BD /* PTClient.m */; };
+		92103E7318943FB7002539BD /* Hill.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 92103E7218943FB7002539BD /* Hill.jpg */; };
 		928B876C18939BEE005F6680 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928B876B18939BEE005F6680 /* Foundation.framework */; };
 		928B876E18939BEE005F6680 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928B876D18939BEE005F6680 /* CoreGraphics.framework */; };
 		928B877018939BEE005F6680 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928B876F18939BEE005F6680 /* UIKit.framework */; };
@@ -63,6 +66,11 @@
 		921006391893D9F3002539BD /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		9210063B1893DA04002539BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9210063D1893DDDA002539BD /* Donkey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Donkey.jpg; path = ../../Donkey.jpg; sourceTree = "<group>"; };
+		92103E6C18942717002539BD /* PT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PT.h; path = PTPinterestClient/PT.h; sourceTree = "<group>"; };
+		92103E6D18942717002539BD /* PT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PT.m; path = PTPinterestClient/PT.m; sourceTree = "<group>"; };
+		92103E6F189431F1002539BD /* PTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTClient.h; path = PTPinterestClient/PTClient.h; sourceTree = "<group>"; };
+		92103E70189431F1002539BD /* PTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTClient.m; path = PTPinterestClient/PTClient.m; sourceTree = "<group>"; };
+		92103E7218943FB7002539BD /* Hill.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Hill.jpg; path = ../../../../Downloads/Hill.jpg; sourceTree = "<group>"; };
 		928B876818939BEE005F6680 /* Pin the donkey tail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin the donkey tail.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		928B876B18939BEE005F6680 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		928B876D18939BEE005F6680 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,6 +186,10 @@
 				928B878618939BEE005F6680 /* PTMyScene.m */,
 				928B87AD1893BAFA005F6680 /* PTPinterestWrapper.h */,
 				928B87AE1893BAFA005F6680 /* PTPinterestWrapper.m */,
+				92103E6C18942717002539BD /* PT.h */,
+				92103E6D18942717002539BD /* PT.m */,
+				92103E6F189431F1002539BD /* PTClient.h */,
+				92103E70189431F1002539BD /* PTClient.m */,
 				928B878818939BEE005F6680 /* Spaceship.png */,
 				928B878A18939BEE005F6680 /* Images.xcassets */,
 				928B877418939BEE005F6680 /* Supporting Files */,
@@ -188,6 +200,7 @@
 		928B877418939BEE005F6680 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				92103E7218943FB7002539BD /* Hill.jpg */,
 				928B877518939BEE005F6680 /* Pin the donkey tail-Info.plist */,
 				9210063D1893DDDA002539BD /* Donkey.jpg */,
 				928B877618939BEE005F6680 /* InfoPlist.strings */,
@@ -334,6 +347,7 @@
 			files = (
 				928B877818939BEE005F6680 /* InfoPlist.strings in Resources */,
 				928B87AC1893A236005F6680 /* PinterestSDKResources.bundle in Resources */,
+				92103E7318943FB7002539BD /* Hill.jpg in Resources */,
 				928B878B18939BEE005F6680 /* Images.xcassets in Resources */,
 				928B878918939BEE005F6680 /* Spaceship.png in Resources */,
 				928B878118939BEE005F6680 /* Main.storyboard in Resources */,
@@ -356,11 +370,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92103E71189431F1002539BD /* PTClient.m in Sources */,
 				928B87AF1893BAFA005F6680 /* PTPinterestWrapper.m in Sources */,
 				928B877E18939BEE005F6680 /* PTAppDelegate.m in Sources */,
 				928B878418939BEE005F6680 /* PTViewController.m in Sources */,
 				928B878718939BEE005F6680 /* PTMyScene.m in Sources */,
 				928B877A18939BEE005F6680 /* main.m in Sources */,
+				92103E6E18942717002539BD /* PT.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,18 +40,20 @@
     donkey.physicsBody= [SKPhysicsBody bodyWithRectangleOfSize:donkey.size];
     donkey.physicsBody.affectedByGravity = TRUE;
     donkey.physicsBody.restitution = 0.8;
+    donkey.physicsBody.mass=1;
+    donkey.position=CGPointMake(0, 400);
     
     
     SKAction *hover = [SKAction sequence:@[
-                                           [SKAction moveByX:0 y:250.0 duration:0.0],
+    
                                            [SKAction waitForDuration:0.2],
                                            
-                                           [SKAction moveByX:100 y:200.0 duration:0.8],
+                                           [SKAction moveByX:120 y:0 duration:0.8],
                                            [SKAction rotateByAngle:0.1 duration:0.3],
                                            
                                            [SKAction waitForDuration:0.2],
                                            
-                                           [SKAction moveByX:100 y:200.0 duration:0.8],
+                                           [SKAction moveByX:120 y:0 duration:0.8],
                                            [SKAction rotateByAngle:-0.1 duration:0.4]]];
     
     [donkey runAction: [SKAction repeatActionForever:hover]];
@@ -64,10 +66,14 @@
 
 - (SKSpriteNode * ) Hill{
     SKSpriteNode *hill = [[SKSpriteNode alloc] initWithImageNamed:@"Hill.jpg"]; //size:CGSizeMake(64,32)];
-    
-    hill.donkey.physicsBody= [SKPhysicsBody bodyWithCircleOfRadius:(100)];
+    hill.size  = CGSizeMake(800, 200);
+    hill.position=CGPointMake(400, 150);
+    hill.physicsBody= [SKPhysicsBody bodyWithRectangleOfSize:hill.size];
+    //hill  = CGRectMake(0, 0, 400, 200);
     hill.physicsBody.affectedByGravity = FALSE;
     hill.physicsBody.restitution = 0.0;
+    hill.physicsBody.mass=1000000000;
+    
     
     
 
