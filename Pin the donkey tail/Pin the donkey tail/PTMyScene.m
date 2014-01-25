@@ -23,9 +23,36 @@
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
         
+        [self addChild: [self Donkey]];
+        
         [self addChild:myLabel];
     }
     return self;
+}
+
+- (SKSpriteNode * ) Donkey{
+    SKSpriteNode *donkey = [[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]; //size:CGSizeMake(64,32)];
+    
+    
+    
+    SKAction *hover = [SKAction sequence:@[
+                                           
+                                           [SKAction waitForDuration:0.3],
+                                           
+                                           [SKAction moveByX:100 y:50.0 duration:0.8],
+                                           [SKAction rotateByAngle:0.1 duration:0.3],
+                                           
+                                           [SKAction waitForDuration:0.3],
+                                           
+                                           [SKAction moveByX:100 y:50.0 duration:0.8],
+                                           [SKAction rotateByAngle:-0.1 duration:0.4]]];
+    
+    [donkey runAction: [SKAction repeatActionForever:hover]];
+    
+
+    //SKLabelNode * donkey = [UIImage imageNamed:@"Donkey.jpg"];
+    return donkey;
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
