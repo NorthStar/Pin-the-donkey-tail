@@ -7,26 +7,6 @@
 ////
 //
 //#import "PTClient.h"
-////#import "OAMutableURLRequest.h"
-///*#import "Debug.h"
-//
-//@implementation PTClient(Private)
-//
-//-(void) initWithClientID:(NSString *) clientID andSecret: (NSString *) clientSecret
-//{
-//    self.clientID = clientID;
-//    self.clientSecret = clientSecret;
-//}
-//
-//-(void) authenticateWithAccessToken: (NSString *) accessToken
-//{
-//    self.accessToken = accessToken;
-//}
-//*/
-//
-//
-//
-//
 ///********** Maybe I have been stupid **********/
 ////
 //// OAMutableURLRequest.m
@@ -53,14 +33,36 @@
 //// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //// THE SOFTWARE.
 //
-//
+//@interface PTClient()
 //- (void)_generateTimestamp;
 //- (void)_generateNonce;
 //- (NSString *)_signatureBaseString;
 //@end
 //
-//@implementation OAMutableURLRequest
-//@synthesize signature, nonce;
+//
+//
+////#import "OAMutableURLRequest.h"
+///*#import "Debug.h"
+//
+//@implementation PTClient(Private)
+//
+//-(void) initWithClientID:(NSString *) clientID andSecret: (NSString *) clientSecret
+//{
+//    self.clientID = clientID;
+//    self.clientSecret = clientSecret;
+//}
+//
+//-(void) authenticateWithAccessToken: (NSString *) accessToken
+//{
+//    self.accessToken = accessToken;
+//}
+//*/
+//
+//
+//
+//
+////@implementation OAMutableURLRequest
+////@synthesize signature, nonce;
 //
 //#pragma mark init
 //

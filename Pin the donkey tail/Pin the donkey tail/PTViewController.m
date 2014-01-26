@@ -20,9 +20,9 @@
 
 - (void)viewDidLoad
 {
+    // Configure the view.
     [super viewDidLoad];
 
-    // Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;

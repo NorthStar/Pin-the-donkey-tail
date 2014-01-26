@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Pinterest/Pinterest.h>
+#import "INETImageView.h"
 @interface PTPinterestWrapper : UIView
 {
     Pinterest *  _pinterest;

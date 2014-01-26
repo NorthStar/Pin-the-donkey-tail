@@ -34,6 +34,7 @@
     return self;
 }
 
+
 - (SKSpriteNode * ) Donkey{
     SKSpriteNode *donkey = [[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]; //size:CGSizeMake(64,32)];
 
@@ -88,10 +89,24 @@
 
 
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     /* Called when a touch begins */
+    //[self runAction: self.buttonPressAnimation];
+    for (UITouch * touch in touches)
+    {
+        if ([touch locationInNode:self].x > 200)
+        {
+                SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
     
-    for (UITouch *touch in touches) {
+                self.nextScene = [[PTScrambleScene alloc] initWithSize: CGSizeMake(1024,768)];
+    
+                //  Optionally, insert code to configure the new scene.
+    
+                [self.scene.view presentScene: self.nextScene transition: reveal];
+        }
+    }
+    /*for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
         SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
@@ -103,7 +118,7 @@
         [sprite runAction:[SKAction repeatActionForever:action]];
         
         [self addChild:sprite];
-    }
+    }*/
 }
 
 -(void)update:(CFTimeInterval)currentTime {

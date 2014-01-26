@@ -21,10 +21,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialize a Pinterest instance with our client_id
-        _pinterest = [[Pinterest alloc] initWithClientId:@"1435791" urlSchemeSuffix:@"prod"];
         
+        _pinterest = [[Pinterest alloc] initWithClientId:@"" urlSchemeSuffix:@"prod"];
+        
+        NSString * description = nil;
+        UILabel * titleLabel = nil;
         CGFloat centerX = CGRectGetMidX(self.frame);
         // Setup Title Label
+        if (description){
         UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         [titleLabel setText:@"Pinterest Pin It Demo"];
         [titleLabel setBackgroundColor:[UIColor clearColor]];
@@ -33,7 +37,7 @@
                                         kMargin,
                                         CGRectGetWidth(titleLabel.frame),
                                         CGRectGetHeight(titleLabel.frame))];
-        [self addSubview:titleLabel];
+            [self addSubview:titleLabel];}
         
         //Initialize from the url string
         NSURL* aURL = [NSURL URLWithString:self.stringURL];
@@ -41,10 +45,18 @@
         UIImage* anImage = [UIImage imageWithData:data];
         UIImageView* anImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         [anImageView setImage:anImage];
-        [anImageView setFrame:CGRectMake(centerX - kSampleImageWidth/2,
+        if (titleLabel){
+            [anImageView setFrame:CGRectMake(centerX - kSampleImageWidth/2,
                                              CGRectGetMaxY(titleLabel.frame) + kMargin,
                                              kSampleImageWidth,
                                              kSampleImageHeight)];
+        }
+        else {
+            [anImageView setFrame:CGRectMake(centerX - kSampleImageWidth/2,
+                                             0,
+                                             kSampleImageWidth,
+                                             kSampleImageHeight)];
+        }
         [self addSubview:anImageView];
 
         
@@ -79,7 +91,32 @@
 
 
 
+// (NSDictionary *)fetchDonkeyPhotos{
+    
+//}
 
+- (void) fetchDonkeyPhotos:(NSMutableDictionary *)data
+{
+    NSMutableArray *photos = [data objectForKey:@"data"];
+    
+    NSLog(@"%@",[[[[[data objectForKey:@"data"] objectAtIndex:0] objectForKey:@"images"] objectForKey:@"low_resolution"] objectForKey:@"url"]);
+    /*    for (UIView *subView in [self.searchResultsBox subviews]) {
+        [subView removeFromSuperview];
+    }
+    
+    [self.searchResultsBox setContentSize:CGSizeMake(320, 100*[photos count])];
+    */
+    int i = 0;
+    
+    for (NSMutableDictionary *photo in photos) {
+        INETImageView* temp = [[INETImageView alloc] initWithURL:[NSURL URLWithString:[[[photo objectForKey:@"images"] objectForKey:@"low_resolution"] objectForKey:@"url"]] andFrame:CGRectMake(0, 100 * i, 100, 100)];
+        
+        //Not displaying anything yet
+        //[self.searchResultsBox addSubview:temp];
+        
+        ++i;
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

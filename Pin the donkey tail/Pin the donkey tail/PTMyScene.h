@@ -7,7 +7,8 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-
+#import "PTScrambleScene.h"
 @interface PTMyScene : SKScene
+@property PTScrambleScene * nextScene;
 
 @end

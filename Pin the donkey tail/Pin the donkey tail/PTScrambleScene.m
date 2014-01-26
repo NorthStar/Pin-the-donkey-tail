@@ -13,7 +13,7 @@
 
 @interface PTScrambleScene()
 @property NSMutableArray * arrayOfIcons;
-@property NSMutableArray * copyArray;
+@property NSMutableArray * anArray;
 @property NSMutableArray * choices;
 @property UIImage * imageToScramble;
 @property UIImage * image1;
@@ -35,14 +35,14 @@
         int whiteSquareX = 0;
         int whiteSquareY = 0;
         
-        NSMutableArray * arrayOfIcons = [[NSMutableArray alloc] initWithCapacity:width];
-        NSMutableArray * copyArray = [[NSMutableArray alloc] initWithCapacity:width];
+        self.arrayOfIcons = [[NSMutableArray alloc] initWithCapacity:width];
+        self.anArray = [[NSMutableArray alloc] initWithCapacity:width];
         [self.arrayOfIcons addObject:[[NSMutableArray alloc] initWithCapacity:height]];
         for (int i = 0; i < width; ++i){
             for (int j = 0; j < height; ++j){
                 if (!(i==whiteSquareX && j==whiteSquareY)){ //leave on empty square
                     [[self.arrayOfIcons objectAtIndex:i] insertObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"] atIndex:j]; //some image
-                    [[self.copyArray objectAtIndex:i] insertObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"] atIndex:j]; //some image
+                    [[self.anArray objectAtIndex:i] insertObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"] atIndex:j]; //some image
                 }
             }
         }
@@ -80,15 +80,26 @@
         
         for (int i =0; i < width; ++i){
             for (int j = 0; j < height; ++j){
-                UIImageView * temp =  [[UIImageView alloc] initWithFrame: CGRectMake(startX+space*i, startY+space*j, 50, 50)];
-                temp.image =[[self.arrayOfIcons objectAtIndex:i] objectAtIndex:j];
+                SKSpriteNode * temp =  [[SKSpriteNode alloc] init];
+                temp.centerRect=CGRectMake(startX+space*i, startY+space*j, 50, 50);
+                temp =[[self.arrayOfIcons objectAtIndex:i] objectAtIndex:j];
+                [self addChild:temp];
+                //nil out temp here
+                /*\FIXME*/
             }
         }
         
         BOOL done=FALSE;
-        while (!done){
+        /*while (!done){
+            CGPoint mousePos;
+            //Somehow let mousePos=clicked position if clicked
             
-        }
+            for (int i = 0; i < width; ++i){
+                for (int j =0 ; j < height; ++j){
+                    if mousePos CGPoint
+                }
+            }
+        }*/
         
         
     }
