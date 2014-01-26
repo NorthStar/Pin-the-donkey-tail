@@ -37,13 +37,14 @@
 @implementation PTScrambleScene
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
-        self.width=3;
+        //All the magic numbers!!!
+        self.width=4;
         self.height=3;
         int scramble = 100;
         self.startX=180;
         self.startY=300;
         self.space=180;
-        self.squareSize=150;
+        self.squareSize=170;
         self.lowStartX=290;
         self.lowStartY=50;
         self.smallSquareSize=50;
@@ -65,10 +66,20 @@
                     self.ptImageViewArray = nil;//nil out, just in case
         
                     //PT * ptObject = [[PT alloc] initWithTagQuery:@"donkeys" andTarget: self andAction:@selector(fetchDonkeyPhotos:)];
+                    
                     if (!self.ptImageViewArray)
                     {
-                    [[self.arrayOfIcons objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]]; //some image
-                        [[self.anArray objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]]; }
+                        UIImage * aImage = [UIImage imageNamed:@"Donkey.jpg"];
+                        //ith column (x) and jth row (y)
+                        aImage= [self helperWithImage: aImage andWidth: i andHeight: j];
+                        
+                        SKTexture * texture = [SKTexture textureWithImage:aImage];
+                        
+                        [[self.arrayOfIcons objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithTexture: texture]];
+                        [[self.anArray objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithTexture:texture] ];
+                    //[[self.arrayOfIcons objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]]; //some image
+                        //[[self.anArray objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]]; }
+                    }
                     else
                     {
                         SKTexture * texture = [SKTexture textureWithImage:[self.ptImageViewArray objectAtIndex: (i*self.height +j)]];
@@ -118,7 +129,7 @@
                 self.whiteSquareY++;
             }
         }
-        
+        //invert i, j
         for (int i =0; i < self.width; ++i){
             for (int j = 0; j < self.height; ++j){
                 SKSpriteNode * temp =[[self.arrayOfIcons objectAtIndex:i] objectAtIndex:j];
@@ -138,6 +149,8 @@
                     temp2.xScale=self.smallSquareSize/self.squareSize;
                     temp2.yScale=self.smallSquareSize/self.squareSize;
                 }
+                
+                //Position things
                 temp2.position = CGPointMake(self.lowStartX+i*self.smallSpace, self.lowStartY+j*self.smallSpace);
                 [self addChild:temp2];
                 //nil out temp here
@@ -230,5 +243,16 @@
     }
 }
 
+-(UIImage *)helperWithImage:(UIImage *)image andWidth: (int) widthIndex andHeight: (int) heightIndex
+{
+    CGRect divideRect = CGRectMake((widthIndex) * self.squareSize ,(self.height - 1 - heightIndex) * self.squareSize, self.squareSize, self.squareSize) ;
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], divideRect);
+    // or use the UIImage wherever you like
+    image =[UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+
+    return image;
+}
 
 @end
