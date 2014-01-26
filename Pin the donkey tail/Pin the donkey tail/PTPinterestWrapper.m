@@ -95,7 +95,7 @@
     
 //}
 
-- (void) fetchDonkeyPhotos:(NSMutableDictionary *)data
++ (void) fetchDonkeyPhotos:(NSMutableDictionary *)data
 {
     NSMutableArray *photos = [data objectForKey:@"data"];
     
