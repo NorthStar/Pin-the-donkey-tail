@@ -39,20 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		921006331893D991002539BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9210062D1893D991002539BD /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
-			remoteInfo = GPUImage;
-		};
-		921006351893D991002539BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9210062D1893D991002539BD /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BCF1A34414DDB1EC00852800;
-			remoteInfo = GPUImageTests;
-		};
 		928B879518939BEE005F6680 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 928B876018939BEE005F6680 /* Project object */;
@@ -63,7 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9210062D1893D991002539BD /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = ../../CodingCourses/GPUImage/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		921006371893D9D8002539BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		921006391893D9F3002539BD /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		9210063B1893DA04002539BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -135,15 +120,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9210062E1893D991002539BD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				921006341893D991002539BD /* libGPUImage.a */,
-				921006361893D991002539BD /* GPUImageTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		928B875F18939BED005F6680 = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +146,6 @@
 				9210063B1893DA04002539BD /* QuartzCore.framework */,
 				921006391893D9F3002539BD /* OpenGLES.framework */,
 				921006371893D9D8002539BD /* AVFoundation.framework */,
-				9210062D1893D991002539BD /* GPUImage.xcodeproj */,
 				928B876B18939BEE005F6680 /* Foundation.framework */,
 				928B876D18939BEE005F6680 /* CoreGraphics.framework */,
 				928B876F18939BEE005F6680 /* UIKit.framework */,
@@ -319,12 +294,6 @@
 			mainGroup = 928B875F18939BED005F6680;
 			productRefGroup = 928B876918939BEE005F6680 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 9210062E1893D991002539BD /* Products */;
-					ProjectRef = 9210062D1893D991002539BD /* GPUImage.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				928B876718939BEE005F6680 /* Pin the donkey tail */,
@@ -332,23 +301,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		921006341893D991002539BD /* libGPUImage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libGPUImage.a;
-			remoteRef = 921006331893D991002539BD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		921006361893D991002539BD /* GPUImageTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GPUImageTests.octest;
-			remoteRef = 921006351893D991002539BD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		928B876618939BEE005F6680 /* Resources */ = {

@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "PTPinterestWrapper.h"
+
+#import <CommonCrypto/CommonHMAC.h>
+
 @interface PTClient : NSObject
 
++ (NSString *) fetchPinterestAPIURLFromQuery:(NSString *)query ;
 @property (atomic, strong) NSString * clientID;
 @property (atomic, strong) NSString * clientSecret;
 @property (atomic, strong) NSString * accessToken;

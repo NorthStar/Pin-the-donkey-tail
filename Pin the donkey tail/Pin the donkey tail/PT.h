@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PTClient.h"
+#import <CommonCrypto/CommonHMAC.h>
 
 @interface PT : NSObject
 

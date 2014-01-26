@@ -18,17 +18,18 @@
         
         SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         
-        myLabel.text = @"Hello, World!";
+        myLabel.text = @"Pin the Tail on the Donkey";
         myLabel.fontSize = 30;
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
+                                       CGRectGetMidY(self.frame)+200);
         
         SKSpriteNode * donk = [self Donkey];
         SKSpriteNode * hill = [self Hill];
         [self addChild: donk];
         [self addChild: hill];
         donk.scene.physicsWorld.gravity=CGVectorMake(0.0, -1.0);
-        
+        PTPinterestWrapper * pinItView = [[PTPinterestWrapper alloc]initWithFrame:CGRectMake(100, 50, 150, 50)];
+        [self.view addSubview:pinItView];
         [self addChild:myLabel];
     }
     return self;
@@ -50,12 +51,12 @@
                                            [SKAction waitForDuration:0.2],
                                            
                                            [SKAction moveByX:120 y:0 duration:0.8],
-                                           [SKAction rotateByAngle:0.1 duration:0.3],
+                                           [SKAction rotateByAngle:0.2 duration:0.4],
                                            
                                            [SKAction waitForDuration:0.2],
                                            
                                            [SKAction moveByX:120 y:0 duration:0.8],
-                                           [SKAction rotateByAngle:-0.1 duration:0.4]]];
+                                           [SKAction rotateByAngle:-0.2 duration:4]]];
     
     [donkey runAction: [SKAction repeatActionForever:hover]];
     
@@ -86,7 +87,9 @@
 }
 
 
-
+-(void)update:(CFTimeInterval)currentTime {
+    /* Called before each frame is rendered */
+}
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -95,7 +98,7 @@
     //[self runAction: self.buttonPressAnimation];
     for (UITouch * touch in touches)
     {
-        if ([touch locationInNode:self].x > 200)
+        if ([touch locationInNode:self].x > 0)
         {
                 SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
     
@@ -121,8 +124,5 @@
     }*/
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
-}
 
 @end

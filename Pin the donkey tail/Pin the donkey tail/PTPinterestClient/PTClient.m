@@ -6,7 +6,92 @@
 ////  Copyright (c) 2014 Harvey Mudd College. All rights reserved.
 ////
 //
-//#import "PTClient.h"
+#import "PTClient.h"
+
+@implementation PTClient
+
+#define BASESTRING @"https://api.pinterest.com/v3/"
+
++ (NSString *)fetchPinterestAPIURLFromQuery:(NSString *) query
+{
+    //initialize hash with a workable one instead of empty string
+    NSString * hash = @"dbb218731dc6c0bd8c394185f1a82d6011e9ddab3871628d4ebcb3afaad79f12 ";
+    NSString * endpoint = @"search/pins/";//Right now, just do a pin query search
+    NSString * client_id = @"1435791";
+    NSString * page_size = @"20";
+    //Get correct timestamp
+    NSDate *past = [NSDate date];
+    NSTimeInterval oldTime = [past timeIntervalSince1970];
+    NSString *unixTime = [[NSString alloc] initWithFormat:@"%0.0f", oldTime];
+    NSString * timestamp = unixTime;
+    
+    //Get signature appended
+    NSString * baseURL = [NSString stringWithFormat:
+                          @"%@%@?query=%@&page_size=%@&client_id=%@&timestamp=%@&oauth_signature=%@",
+                          BASESTRING,
+                          endpoint,
+                          client_id,
+                          page_size,
+                          query,
+                          timestamp, hash];
+    
+    
+    //url encodings
+    NSMutableString * output = [NSMutableString string];
+    const unsigned char * source = (const unsigned char *)[baseURL UTF8String];
+    int sourceLen = strlen((const char *)source);
+    for (int i = 0; i < sourceLen; ++i) {
+        const unsigned char thisChar = source[i];
+        if (thisChar == ' '){
+            [output appendString:@"+"];
+        } else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
+                   (thisChar >= 'a' && thisChar <= 'z') ||
+                   (thisChar >= 'A' && thisChar <= 'Z') ||
+                   (thisChar >= '0' && thisChar <= '9')) {
+            [output appendFormat:@"%c", thisChar];
+        } else {
+            [output appendFormat:@"%%%02X", thisChar];
+        }
+    }
+    
+    
+    //Use hmac
+    
+    NSString *key;
+    NSString *data;
+    
+    const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
+    const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
+    
+    unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+    
+    CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
+    
+    NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC
+                                          length:sizeof(cHMAC)];
+    
+    hash = [HMAC base64EncodedStringWithOptions:0];
+    
+    NSString * finalString = [NSString stringWithFormat:
+                              @"%@%@?query=%@&page_size=%@&client_id=%@&timestamp=%@&oauth_signature=%@",
+                              BASESTRING,
+                              endpoint,
+                              client_id,
+                              page_size,
+                              query,
+                              timestamp, hash];
+    return finalString;
+}
+
+-(void) initWithClientID:(NSString *) clientID andSecret: (NSString *) clientSecret
+{
+    self.clientID = clientID;
+    self.clientSecret = clientSecret;
+}
+
+
+
+@end
 ///********** Maybe I have been stupid **********/
 ////
 //// OAMutableURLRequest.m
@@ -45,17 +130,7 @@
 ///*#import "Debug.h"
 //
 //@implementation PTClient(Private)
-//
-//-(void) initWithClientID:(NSString *) clientID andSecret: (NSString *) clientSecret
-//{
-//    self.clientID = clientID;
-//    self.clientSecret = clientSecret;
-//}
-//
-//-(void) authenticateWithAccessToken: (NSString *) accessToken
-//{
-//    self.accessToken = accessToken;
-//}
+
 //*/
 //
 //
