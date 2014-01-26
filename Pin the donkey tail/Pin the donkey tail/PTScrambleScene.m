@@ -41,9 +41,13 @@
         self.height=3;
         int scramble = 100;
         self.startX=200;
-        self.startY=100;
+        self.startY=300;
         self.space=180;
         self.squareSize=150;
+        self.lowStartX=290;
+        self.lowStartY=50;
+        self.smallSquareSize=50;
+        self.smallSpace=60;
         
         
         self.whiteSquareX = 0;
@@ -114,13 +118,17 @@
                 temp.position = CGPointMake(self.startX+i*self.space, self.startY+j*self.space);
                 [self addChild:temp];
                 
-                SKSpriteNode * temp2 =[[self.anr objectAtIndex:i] objectAtIndex:j];
-                if (!(i==self.whiteSquareX&&j==self.whiteSquareY)){
-                    temp.xScale=self.squareSize/temp.size.width;
-                    temp.yScale=self.squareSize/temp.size.height;
+                SKSpriteNode * temp2 =[[self.anArray objectAtIndex:i] objectAtIndex:j];
+                if (!(i==0&&j==0)){
+                    temp2.xScale=self.smallSquareSize/temp2.size.width;
+                    temp2.yScale=self.smallSquareSize/temp2.size.height;
                 }
-                temp.position = CGPointMake(self.startX+i*self.space, self.startY+j*self.space);
-                [self addChild:temp];
+                else{
+                    temp2.xScale=self.smallSquareSize/self.squareSize;
+                    temp2.yScale=self.smallSquareSize/self.squareSize;
+                }
+                temp2.position = CGPointMake(self.lowStartX+i*self.smallSpace, self.lowStartY+j*self.smallSpace);
+                [self addChild:temp2];
                 //nil out temp here
                 /*\FIXME*/
             }
@@ -147,8 +155,8 @@
         [[self.arrayOfIcons objectAtIndex:self.whiteSquareX] replaceObjectAtIndex:self.whiteSquareY withObject:swapped];
         [[self.arrayOfIcons objectAtIndex:self.whiteSquareX-1] replaceObjectAtIndex:self.whiteSquareY withObject:whiteSquare];
         
-        [swapped runAction:[SKAction moveByX:self.squareSize y:0 duration:0.5]];
-        [whiteSquare runAction:[SKAction moveByX:-self.squareSize y:0 duration:0.5]];
+        [swapped runAction:[SKAction moveByX:self.space y:0 duration:0.5]];
+        [whiteSquare runAction:[SKAction moveByX:-self.space y:0 duration:0.5]];
         self.whiteSquareX--;
         
     }
@@ -159,8 +167,8 @@
         [[self.arrayOfIcons objectAtIndex:self.whiteSquareX] replaceObjectAtIndex:self.whiteSquareY withObject:swapped];
         [[self.arrayOfIcons objectAtIndex:self.whiteSquareX+1] replaceObjectAtIndex:self.whiteSquareY withObject:whiteSquare];
         
-        [swapped runAction:[SKAction moveByX:-self.squareSize y:0 duration:0.5]];
-        [whiteSquare runAction:[SKAction moveByX:self.squareSize y:0 duration:0.5]];
+        [swapped runAction:[SKAction moveByX:-self.space y:0 duration:0.5]];
+        [whiteSquare runAction:[SKAction moveByX:self.space y:0 duration:0.5]];
         self.whiteSquareX++;
         
     }
@@ -171,8 +179,8 @@
         [[self.arrayOfIcons objectAtIndex:self.whiteSquareX] replaceObjectAtIndex:self.whiteSquareY withObject:swapped];
         [[self.arrayOfIcons objectAtIndex:self.whiteSquareX] replaceObjectAtIndex:self.whiteSquareY-1 withObject:whiteSquare];
         
-        [swapped runAction:[SKAction moveByX:0 y:self.squareSize duration:0.5]];
-        [whiteSquare runAction:[SKAction moveByX:0 y:-self.squareSize duration:0.5]];
+        [swapped runAction:[SKAction moveByX:0 y:self.space duration:0.5]];
+        [whiteSquare runAction:[SKAction moveByX:0 y:-self.space duration:0.5]];
         self.whiteSquareY--;
     }
     if (self.whiteSquareY<self.height-1 &&
@@ -182,8 +190,8 @@
         [[self.arrayOfIcons objectAtIndex:self.whiteSquareX] replaceObjectAtIndex:self.whiteSquareY withObject:swapped ];
         [[self.arrayOfIcons objectAtIndex:self.whiteSquareX] replaceObjectAtIndex:self.whiteSquareY+1 withObject:whiteSquare];
         
-        [swapped runAction:[SKAction moveByX:0 y:-self.squareSize duration:0.5]];
-        [whiteSquare runAction:[SKAction moveByX:0 y:self.squareSize duration:0.5]];
+        [swapped runAction:[SKAction moveByX:0 y:-self.space duration:0.5]];
+        [whiteSquare runAction:[SKAction moveByX:0 y:self.space duration:0.5]];
         self.whiteSquareY++;
     }
 }
