@@ -58,7 +58,7 @@
                 [choices addObject:[NSNumber numberWithInt:2]];
             if (whiteSquareY < height)
                 [choices addObject:[NSNumber numberWithInt:3]];
-            int k=(arc4random()* [self.choices );
+            int k = arc4random()% [self.choices count];
             SKSpriteNode * temp=[[self.arrayOfIcons objectAtIndex:whiteSquareX] objectAtIndex:whiteSquareY];
             if (k==0){
                 [[self.arrayOfIcons objectAtIndex:whiteSquareX] insertObject:[[self.arrayOfIcons objectAtIndex:whiteSquareX-1] objectAtIndex:whiteSquareY] atIndex:whiteSquareY];
@@ -80,8 +80,8 @@
         
         for (int i =0; i < width; ++i){
             for (int j = 0; j < height; ++j){
-                [[self.arrayOfIcons objectAtIndex:i] objectAtIndex:j] setFrame: = CGsizeMake(50,50);
-                [[self.arrayOfIcons objectAtIndex:i] objectAtIndex:j].center = CGPointMake(startX+space*i, startY+space*j);
+                UIImageView * temp =  [[UIImageView alloc] initWithFrame: CGRectMake(startX+space*i, startY+space*j, 50, 50)];
+                temp.image =[[self.arrayOfIcons objectAtIndex:i] objectAtIndex:j];
             }
         }
         
