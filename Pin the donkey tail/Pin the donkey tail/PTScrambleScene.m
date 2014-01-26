@@ -143,7 +143,8 @@
 
 -(void)touchesBegan:(NSSet *) touches withEvent:(UIEvent *) event{
     UITouch *myTouch = [[touches allObjects] objectAtIndex:0];
-    CGPoint mousePos = [myTouch locationInView: self.view];
+    CGPoint tempPos = [myTouch locationInView: self.view];
+    CGPoint mousePos = CGPointMake(tempPos.x+150, 950-tempPos.y);
     //Somehow let mousePos=clicked position if clicked
     SKSpriteNode * whiteSquare=[[self.arrayOfIcons objectAtIndex:self.whiteSquareX] objectAtIndex:self.whiteSquareY];
     SKSpriteNode * swapped;
