@@ -27,7 +27,7 @@
     
     //Get signature appended
     NSString * baseURL = [NSString stringWithFormat:
-                          @"%@%@?query=%@&page_size=%@&client_id=%@&timestamp=%@&oauth_signature=%@",
+                          @"%@%@?client_id=%@&page_size=%@&?query=%@&timestamp=%@&oauth_signature=%@",
                           BASESTRING,
                           endpoint,
                           client_id,
@@ -57,8 +57,8 @@
     
     //Use hmac
     
-    NSString *key;
-    NSString *data;
+    NSString *key = output;
+    NSString *data = output;
     
     const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
     const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
@@ -73,7 +73,7 @@
     hash = [HMAC base64EncodedStringWithOptions:0];
     
     NSString * finalString = [NSString stringWithFormat:
-                              @"%@%@?query=%@&page_size=%@&client_id=%@&timestamp=%@&oauth_signature=%@",
+                              @"%@%@?client_id=%@&page_size=%@&?query=%@&timestamp=%@&oauth_signature=%@",
                               BASESTRING,
                               endpoint,
                               client_id,

@@ -20,4 +20,8 @@
 
 @property (atomic, strong) NSString * stringURL;
 - (void)pinIt:(id)sender;
+
+@property (atomic, strong) NSMutableArray * ptImageViewArray;
+
+//- (void) fetchDonkeyPhotos:(NSMutableDictionary *)data;
 @end

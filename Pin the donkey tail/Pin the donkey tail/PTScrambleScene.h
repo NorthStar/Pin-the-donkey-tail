@@ -7,7 +7,9 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-
+#import "PTPinterestWrapper.h"
+#import "PT.h"
 @interface PTScrambleScene : SKScene
 
+@property (atomic, strong) NSMutableArray * ptImageViewArray;
 @end

@@ -15,8 +15,8 @@
     self = [super init];
     if (self) {
         
-
-        /*https://api.pinterest.com/v3/search/pins/?query=donkeys&page_size=25&client_id=1435791&timestamp=1390674537047&oauth_signature=dbb218731dc6c0bd8c394185f1a82d6011e9ddab3871628d4ebcb3afaad79f12         
+        /*successful search:
+         *https://api.pinterest.com/v3/search/pins/?query=donkeys&page_size=25&client_id=1435791&timestamp=1390674537047&oauth_signature=dbb218731dc6c0bd8c394185f1a82d6011e9ddab3871628d4ebcb3afaad79f12
          *\FIXME: This should not be visible
          *\TODO:  This should be up to date, accepting multiple queries and everything. But here I am quite hacky.
          */
@@ -27,17 +27,14 @@
 
                            //[NSURL URLWithString:[NSString stringWithFormat:@"https://api.pinterest.com/v3/search/pins/?query=%@donkeys&page_size=25&client_id=1435791&timestamp=1390674537047&oauth_signature=dbb218731dc6c0bd8c394185f1a82d6011e9ddab3871628d4ebcb3afaad79f12", query]]] delegate:self];
         
-        /*self.connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.instagram.com/v1/tags/%@/media/recent?client_id=52b557afb1c64d5aa7480bef6c368f3e", query]]] delegate:self];*/
-        
-        
-        
         
         self.target = incomingTarget;
         self.action = incomingAction;
     }
     return self;
 }
-     - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.data = [[NSMutableData alloc] initWithCapacity:0];
     
@@ -53,8 +50,6 @@
     NSMutableDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:NSJSONReadingMutableContainers error:nil];
     
     [self.target performSelector:self.action withObject:dictionary];
-    
-    
 }
 
 @end

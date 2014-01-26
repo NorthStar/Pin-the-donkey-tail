@@ -19,6 +19,7 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    self.ptImageViewArray = nil;
     if (self) {
         // Initialize a Pinterest instance with our client_id
         
@@ -91,32 +92,31 @@
 
 
 
-// (NSDictionary *)fetchDonkeyPhotos{
-    
-//}
 
-+ (void) fetchDonkeyPhotos:(NSMutableDictionary *)data
-{
-    NSMutableArray *photos = [data objectForKey:@"data"];
-    
-    NSLog(@"%@",[[[[[data objectForKey:@"data"] objectAtIndex:0] objectForKey:@"images"] objectForKey:@"low_resolution"] objectForKey:@"url"]);
-    /*    for (UIView *subView in [self.searchResultsBox subviews]) {
-        [subView removeFromSuperview];
-    }
-    
-    [self.searchResultsBox setContentSize:CGSizeMake(320, 100*[photos count])];
-    */
-    int i = 0;
-    
-    for (NSMutableDictionary *photo in photos) {
-        INETImageView* temp = [[INETImageView alloc] initWithURL:[NSURL URLWithString:[[[photo objectForKey:@"images"] objectForKey:@"low_resolution"] objectForKey:@"url"]] andFrame:CGRectMake(0, 100 * i, 100, 100)];
-        
-        //Not displaying anything yet
-        //[self.searchResultsBox addSubview:temp];
-        
-        ++i;
-    }
-}
+
+
+//-(void) fetchDonkeyPhotos:(NSMutableDictionary *)data
+//{
+//    NSMutableArray *photos = [data objectForKey:@"data"];
+//    
+//    NSLog(@"%@",[[[[[data objectForKey:@"data"] objectAtIndex:0] objectForKey:@"images"] objectForKey:@"low_resolution"] objectForKey:@"url"]);
+//    /*    for (UIView *subView in [self.searchResultsBox subviews]) {
+//        [subView removeFromSuperview];
+//    }
+//    
+//    [self.searchResultsBox setContentSize:CGSizeMake(320, 100*[photos count])];
+//    */
+//    int i = 0;
+//    for (NSMutableDictionary *photo in photos) {
+//        INETImageView* temp = [[INETImageView alloc] initWithURL:[NSURL URLWithString:[[[photo objectForKey:@"images"] objectForKey:@"low_resolution"] objectForKey:@"url"]] andFrame:CGRectMake(0, 100 * i, 100, 100)];
+//        
+//        //Not displaying anything yet
+//        //[self.searchResultsBox addSubview:temp];
+//        [self.ptImageViewArray addObject:temp];
+//        ++i;
+//    }
+//    
+//}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

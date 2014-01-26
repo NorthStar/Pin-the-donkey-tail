@@ -62,8 +62,19 @@
             for (int j = 0; j < self.height; ++j){
                 if (!(i
                       ==self.whiteSquareX && j==self.whiteSquareY)){ //leave on empty square
+                    self.ptImageViewArray = nil;//nil out, just in case
+        
+                    //PT * ptObject = [[PT alloc] initWithTagQuery:@"donkeys" andTarget: self andAction:@selector(fetchDonkeyPhotos:)];
+                    if (!self.ptImageViewArray)
+                    {
                     [[self.arrayOfIcons objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]]; //some image
-                    [[self.anArray objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]]; //some image
+                        [[self.anArray objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithImageNamed:@"Donkey.jpg"]]; }
+                    else
+                    {
+                        SKTexture * texture = [SKTexture textureWithImage:[self.ptImageViewArray objectAtIndex: (i*self.height +j)]];
+                        [[self.arrayOfIcons objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithTexture: texture]];
+                        [[self.anArray objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithTexture:texture] ];
+                    }
                 }
                 else{
                     [[self.arrayOfIcons objectAtIndex:i] addObject:[[SKSpriteNode alloc] initWithColor:[UIColor blackColor]  size:CGSizeMake(self.squareSize, self.squareSize)]]; //some image
@@ -138,6 +149,28 @@
         
     }
     return self;
+}
+
+
+-(void) fetchDonkeyPhotos:(NSMutableDictionary *)data
+{
+    if(!data){ self.ptImageViewArray = nil;}
+    else{
+    if ([[[data objectForKey:@"status"] objectAtIndex: 0]isEqualToString: @"success"])
+    {
+    NSMutableArray *photos = [data objectForKey:@"data"];
+
+        int i = 0;
+        for (NSMutableDictionary *photo in photos) {
+            INETImageView* temp = [[INETImageView alloc] initWithURL:[NSURL URLWithString:[photo    objectForKey:@"image_medium_url"]]  andFrame:CGRectMake(0, 100 * i, 100, 100)];
+        
+        //Not displaying anything yet
+        //[self.searchResultsBox addSubview:temp];
+            [self.ptImageViewArray addObject:temp];
+            ++i;
+        }
+    }
+        else self.ptImageViewArray = nil;}
 }
 
 

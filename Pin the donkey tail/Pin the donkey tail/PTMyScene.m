@@ -50,13 +50,13 @@
     
                                            [SKAction waitForDuration:0.2],
                                            
-                                           [SKAction moveByX:120 y:0 duration:0.8],
+                                           [SKAction moveByX:120 y:5 duration:0.8],
                                            [SKAction rotateByAngle:0.2 duration:0.4],
                                            
                                            [SKAction waitForDuration:0.2],
                                            
-                                           [SKAction moveByX:120 y:0 duration:0.8],
-                                           [SKAction rotateByAngle:-0.2 duration:4]]];
+                                           [SKAction moveByX:120 y:5 duration:0.8],
+                                           [SKAction rotateByAngle:-0.2 duration:0.4]]];
     
     [donkey runAction: [SKAction repeatActionForever:hover]];
     

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PTClient.h"
 #import <CommonCrypto/CommonHMAC.h>
+#import "PTPinterestWrapper.h"
 
 @interface PT : NSObject
 
