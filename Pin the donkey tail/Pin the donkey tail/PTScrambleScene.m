@@ -40,7 +40,7 @@
         self.width=3;
         self.height=3;
         int scramble = 100;
-        self.startX=200;
+        self.startX=180;
         self.startY=300;
         self.space=180;
         self.squareSize=150;
