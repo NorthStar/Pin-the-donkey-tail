@@ -13,7 +13,9 @@ Slide the tiles to play.
 Future Plan
 ====================
 Integrating pinterest pins with images used.
-We plan on cropping the images by position and record scores as a user plays.
+Quizzing on boards.
+Using filters to find sharp lines of images from a user's pins and make a drawing game.
+
 Idea
 ====================
 Our idea is that Pinterest users are especially interested in repinning cute and pretty pictures. Meanwhile, the social part of pinterest is mainly based on organization of boards. This app tries to make a game out of pinned boards primarily through the images. Donkeys are cute and they are silly, so if a pinner loses a game, her/his pinboard will have a donkey added to it.(Or perhaps the other way around- we have not decided!) In this way, Pinterst users can have more fun exploring the internet through their pinned items and from other pinners.
